@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE
+	mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd"
+>
+<mapper namespace="com.example.demo.domain.mapper.WorldDbMapper">
+	<select id="selectContinent" resultType="com.example.demo.domain.entity.world.SelectContinentEntity">
+		SELECT
+			country.Name AS countryName
+			city.Name AS cityName,
+			city.Population AS cityPopulation
+		FROM
+			world.country AS country
+		LEFT JOIN
+			world.city AS city
+		ON
+			country.CountryCode = city.CountryCode
+		WHERE
+			<foreach
+				item="name" index="index" collection="listCountryCode"
+				open="country.CountryCode = (" separator="," close=")"
+			>
+				#{name}
+			</foreach>
+		ORDER BY
+			country.Name ASC,
+			city.Population DESC
+		LIMIT
+			3
+	</select>
+</mapper>
