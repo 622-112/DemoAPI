@@ -1,7 +1,8 @@
 package com.example.demo.service;
 
 import java.util.List;
-import com.example.demo.service.dto.WorldInfoServiceDto;
+
+import com.example.demo.controller.dto.ResponceDemoApplicationDto;
 
 /**
  * WorldInfoServiceインターフェースクラス
@@ -11,8 +12,8 @@ import com.example.demo.service.dto.WorldInfoServiceDto;
 public interface WorldInfoService {
 	/**
 	 * 
-	 * @param list
-	 * @return WorldInfoServiceDto
+	 * @param nameList
+	 * @return ResponceDemoApplicationDto
 	 */
-	public WorldInfoServiceDto getWorldInfo(List<String> list);
+	public ResponceDemoApplicationDto getWorldInfo(List<String> nameList);
 }

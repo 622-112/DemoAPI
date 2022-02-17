@@ -11,7 +11,19 @@ import lombok.Setter;
 @Setter
 @Getter
 public class WorldInfo {
+
+	/*
+	 * çë
+	 */
 	String countryName;
+
+	/*
+	 * és
+	 */
 	String cityName;
+
+	/*
+	 * êlå˚
+	 */
 	String cityPopulation;
 }

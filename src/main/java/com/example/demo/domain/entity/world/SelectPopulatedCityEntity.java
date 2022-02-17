@@ -11,7 +11,16 @@ import lombok.Setter;
 @Getter
 @Setter
 public class SelectPopulatedCityEntity {
+	/*
+	 * çë
+	 */
 	String countryName;
+	/*
+	 * és
+	 */
 	String cityName;
+	/*
+	 * êlå˚
+	 */
 	String cityPopulation;
 }
