@@ -7,13 +7,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
- * DemoApplicationリクエストマッピング用Dto
- * @author 510
- * @since 2022/02/12
+ * DemoApplication繝ｪ繧ｯ繧ｨ繧ｹ繝医�槭ャ繝斐Φ繧ｰ逕ｨDto
  */
 @NoArgsConstructor
 @Setter
 @Getter
-public class RequestDemoApplicationDto {
-	List<String> name;
+public class ReqDemoApplicationDto {
+	private List<String> name;
 }

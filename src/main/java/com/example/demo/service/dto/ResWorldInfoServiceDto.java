@@ -6,14 +6,12 @@ import java.util.Map;
 import com.example.demo.controller.dto.WorldInfo;
 
 /**
- * WorldInfoService�pDto
- * @author 510
- * @since 2022/02/13
+ * WorldInfoService用Dto（レスポンス）
  */
-public class WorldInfoServiceDto {
+public class ResWorldInfoServiceDto {
 	/*
-	 * KEY�F���O
-	 * VALUE�F
+	 * KEY：名前
+	 * VALUE：国情報リスト
 	 */
 	Map<String, List<WorldInfo>> worldInfo;
 }

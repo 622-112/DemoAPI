@@ -1,19 +1,15 @@
 package com.example.demo.service;
 
-import java.util.List;
-
-import com.example.demo.controller.dto.ResponceDemoApplicationDto;
+import com.example.demo.controller.dto.ReqDemoApplicationDto;
+import com.example.demo.controller.dto.ResDemoApplicationDto;
 
 /**
- * WorldInfoServiceインターフェースクラス
- * @author 510
- * @since 2022/02/13
+ * WorldInfoService繧､繝ｳ繧ｿ繝ｼ繝輔ぉ繝ｼ繧ｹ繧ｯ繝ｩ繧ｹ
  */
 public interface WorldInfoService {
 	/**
-	 * 
-	 * @param nameList
-	 * @return ResponceDemoApplicationDto
+	 * @param reqDemoApplicationDto
+	 * @return ResDemoApplicationDto
 	 */
-	public ResponceDemoApplicationDto getWorldInfo(List<String> nameList);
+	public ResDemoApplicationDto getWorldInfo(ReqDemoApplicationDto reqDemoApplicationDto);
 }

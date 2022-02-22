@@ -1,56 +1,71 @@
 package com.example.demo.service.impl;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import com.example.demo.controller.dto.ResponceDemoApplicationDto;
+import org.springframework.stereotype.Service;
+import com.example.demo.controller.dto.ReqDemoApplicationDto;
+import com.example.demo.controller.dto.ResDemoApplicationDto;
 import com.example.demo.controller.dto.WorldInfo;
-import com.example.demo.domain.entity.world.SelectPopulatedCityEntity;
-import com.example.demo.domain.mapper.WorldDbMapper;
+import com.example.demo.repository.entity.world.ReqSelectPopulatedCityEntity;
+import com.example.demo.repository.entity.world.ResSelectPopulatedCityEntity;
+import com.example.demo.repository.mapper.WorldDbMapper;
 import com.example.demo.service.WorldInfoService;
+import com.google.gson.Gson;
 
 /**
- * WorldInfoServiceÀ‘•ƒNƒ‰ƒX
- * @author 510
- * @since 2022/02/13
+ * WorldInfoServiceå®Ÿè£…ã‚¯ãƒ©ã‚¹
  */
-public class WorldInfoServiceImpl implements WorldInfoService{
+@Service
+public class WorldInfoServiceImpl implements WorldInfoService {
 
 	@Autowired WorldDbMapper worldDbMapper;
+	@Autowired Gson gson;
+
+	private static Logger logger = LoggerFactory.getLogger(WorldInfoServiceImpl.class);
 
 	@Override
-	public ResponceDemoApplicationDto getWorldInfo(List<String> nameList) {
+	public ResDemoApplicationDto getWorldInfo(ReqDemoApplicationDto reqDemoApplicationDto) {
 
-		ResponceDemoApplicationDto responceDemoApplicationDto = new ResponceDemoApplicationDto();
+		ResDemoApplicationDto responceDemoApplicationDto = new ResDemoApplicationDto();
 		Map<String, List<WorldInfo>> mapWorldInfo = new HashMap<>();
+		List<String> names = reqDemoApplicationDto.getName();
 
-		nameList.forEach(name -> {
-			// ‚±‚±‚Å–¼‘O‚É‡’v‚·‚é‘ƒR[ƒh‚ğæ“¾‚·‚éSQL‚ğŒÄ‚Ô
-			// ‚»‚ÌŒ‹‰Ê‚Ì‘ƒR[ƒh‚Å«‚Ìˆ—‚ğ‚·‚é
-			List<SelectPopulatedCityEntity> listSelectPopulatedCityEntity = worldDbMapper.selectPopulatedCity(nameList);
-			mapWorldInfo.put(name, this.setWorldInfo(listSelectPopulatedCityEntity));
-		});
+		logger.info(gson.toJson(names));
+//		if (Objects.isNull(names)) {
+//			names.forEach(name -> {
+//				// ã“ã“ã§åå‰ã«åˆè‡´ã™ã‚‹å›½ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹SQLã‚’å‘¼ã¶
+//				// ãã®çµæœã®å›½ã‚³ãƒ¼ãƒ‰ã§â†“ã®å‡¦ç†ã‚’ã™ã‚‹
+//				List<ResSelectPopulatedCityEntity> listSelectPopulatedCityEntity = worldDbMapper.selectPopulatedCity(names);
+//				mapWorldInfo.put(name, this.setWorldInfo(listSelectPopulatedCityEntity));
+//			});
+//		}
+		ReqSelectPopulatedCityEntity reqSelectPopulatedCityEntity = new ReqSelectPopulatedCityEntity();
+		reqSelectPopulatedCityEntity.setListCountryCode(names);
+		List<ResSelectPopulatedCityEntity> listSelectPopulatedCityEntity = worldDbMapper.selectPopulatedCity(reqSelectPopulatedCityEntity);
+		mapWorldInfo.put("are", this.setWorldInfo(listSelectPopulatedCityEntity));
+
+		logger.info(gson.toJson(mapWorldInfo));
 		return responceDemoApplicationDto;
 	}
 
 	/**
-	 * WorldInfoƒŠƒXƒgİ’èƒƒ\ƒbƒh
-	 * @param listSelectPopulatedCityEntity selectPopulatedCityƒGƒ“ƒeƒBƒeƒBƒNƒ‰ƒXƒŠƒXƒg
-	 * @return List<WorldInfo> DemoApplicationƒŒƒXƒ|ƒ“ƒXƒ}ƒbƒsƒ“ƒO—pDtoƒŠƒXƒg
+	 * WorldInfoãƒªã‚¹ãƒˆè¨­å®šãƒ¡ã‚½ãƒƒãƒ‰
+	 * @param listSelectPopulatedCityEntity selectPopulatedCityã‚¨ãƒ³ãƒ†ã‚£ãƒ†ã‚£ã‚¯ãƒ©ã‚¹ãƒªã‚¹ãƒˆ
+	 * @return List<WorldInfo> DemoApplicationãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒãƒƒãƒ”ãƒ³ã‚°ç”¨Dtoãƒªã‚¹ãƒˆ
 	 */
-	private List<WorldInfo> setWorldInfo(List<SelectPopulatedCityEntity> listSelectPopulatedCityEntity) {
+	private List<WorldInfo> setWorldInfo(List<ResSelectPopulatedCityEntity> listSelectPopulatedCityEntity) {
 
 		List<WorldInfo> listWorldInfo = new LinkedList<>();
-		Iterator<SelectPopulatedCityEntity> iterator = listSelectPopulatedCityEntity.iterator();
+		Iterator<ResSelectPopulatedCityEntity> iterator = listSelectPopulatedCityEntity.iterator();
 
 		while(iterator.hasNext()) {
-			SelectPopulatedCityEntity selectPopulatedCityEntity = iterator.next();
+			ResSelectPopulatedCityEntity selectPopulatedCityEntity = iterator.next();
 			WorldInfo worldInfo = new WorldInfo();
 
 			worldInfo.setCountryName(selectPopulatedCityEntity.getCountryName());

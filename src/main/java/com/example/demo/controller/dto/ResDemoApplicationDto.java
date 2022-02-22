@@ -7,12 +7,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * DemoApplicationレスポンスマッピング用Dto
- * @author 510
- * @since 2022/02/13
+ * DemoApplication繝ｬ繧ｹ繝昴Φ繧ｹ繝槭ャ繝斐Φ繧ｰ逕ｨDto
  */
 @Setter
 @Getter
-public class ResponceDemoApplicationDto {
+public class ResDemoApplicationDto {
 	Map<String, List<WorldInfo>> responceDemoApprilcation;
 }

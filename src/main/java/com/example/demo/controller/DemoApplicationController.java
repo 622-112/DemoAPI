@@ -1,26 +1,25 @@
 package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.example.demo.controller.dto.RequestDemoApplicationDto;
-import com.example.demo.controller.dto.ResponceDemoApplicationDto;
+import com.example.demo.controller.dto.ReqDemoApplicationDto;
+import com.example.demo.controller.dto.ResDemoApplicationDto;
 import com.example.demo.service.WorldInfoService;
 
 /**
- * DemoApplicationコントローラクラス
- * @author 510
- * @since 2022/02/13
+ * DemoApplication繧ｳ繝ｳ繝医Ο繝ｼ繝ｩ繧ｯ繝ｩ繧ｹ
  */
 @RestController
 public class DemoApplicationController {
 
 	@Autowired WorldInfoService worldInfoService;
 
-	@RequestMapping("/")
-	public ResponceDemoApplicationDto getDemoApplication(RequestDemoApplicationDto requestDemoApplicationDto) {
-		worldInfoService.getWorldInfo(requestDemoApplicationDto.getName());
+	@PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResDemoApplicationDto getDemoApplication(@RequestBody ReqDemoApplicationDto reqDemoApplicationDto) {
+		worldInfoService.getWorldInfo(reqDemoApplicationDto);
 		return null;
 	}
 }

@@ -1,29 +1,1 @@
-package com.example.demo.controller.dto;
-
-import lombok.Getter;
-import lombok.Setter;
-
-/**
- * DemoApplicationƒŒƒXƒ|ƒ“ƒXƒ}ƒbƒsƒ“ƒO—pDto(WorldInfo)
- * @author 510
- * @since 2022/02/13
- */
-@Setter
-@Getter
-public class WorldInfo {
-
-	/*
-	 * ‘
-	 */
-	String countryName;
-
-	/*
-	 * s
-	 */
-	String cityName;
-
-	/*
-	 * lŒû
-	 */
-	String cityPopulation;
-}
+package com.example.demo.controller.dto;import lombok.Getter;import lombok.Setter;/** * DemoApplicationãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒãƒƒãƒ”ãƒ³ã‚°ç”¨Dto(WorldInfo) */@Setter@Getterpublic class WorldInfo {	/*	 * å›½	 */	String countryName;	/*	 * å¸‚	 */	String cityName;	/*	 * äººå£	 */	String cityPopulation;}
