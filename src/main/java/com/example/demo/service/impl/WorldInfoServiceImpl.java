@@ -14,7 +14,7 @@ import com.example.demo.controller.dto.ResDemoApplicationDto;
 import com.example.demo.controller.dto.WorldInfo;
 import com.example.demo.repository.entity.world.ReqSelectPopulatedCityEntity;
 import com.example.demo.repository.entity.world.ResSelectPopulatedCityEntity;
-import com.example.demo.repository.mapper.WorldDbMapper;
+import com.example.demo.repository.mapper.world.WorldDbMapper;
 import com.example.demo.service.WorldInfoService;
 import com.google.gson.Gson;
 

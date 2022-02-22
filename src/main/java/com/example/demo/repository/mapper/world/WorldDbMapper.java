@@ -1,4 +1,4 @@
-package com.example.demo.repository.mapper;
+package com.example.demo.repository.mapper.world;
 
 import java.util.List;
 
