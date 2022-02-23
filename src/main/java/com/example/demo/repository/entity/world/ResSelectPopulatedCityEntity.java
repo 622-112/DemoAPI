@@ -10,6 +10,10 @@ import lombok.Setter;
 @Setter
 public class ResSelectPopulatedCityEntity {
 	/*
+	 * 名前
+	 */
+	String name;
+	/*
 	 * 国
 	 */
 	String countryName;

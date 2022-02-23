@@ -1,5 +1,7 @@
 package com.example.demo.repository.entity.user;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,7 +12,7 @@ import lombok.Setter;
 @Setter
 public class ReqSelectUserCountryCodeEntity {
 	/*
-	 * 名前（ファーストネーム）
+	 * 名前
 	 */
-	String name;
+	List<String> listName;
 }

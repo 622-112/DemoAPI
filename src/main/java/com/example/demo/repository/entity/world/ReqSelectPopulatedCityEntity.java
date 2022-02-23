@@ -12,7 +12,7 @@ import lombok.Setter;
 @Setter
 public class ReqSelectPopulatedCityEntity {
 	/*
-	 * 国コード
+	 * ユーザ国リスト
 	 */
-	List<String> listCountryCode;
+	List<UserCountry> listUserCountry;
 }

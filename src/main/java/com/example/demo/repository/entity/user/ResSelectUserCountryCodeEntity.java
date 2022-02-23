@@ -10,6 +10,10 @@ import lombok.Setter;
 @Setter
 public class ResSelectUserCountryCodeEntity {
 	/*
+	 * 名前
+	 */
+	String name;
+	/*
 	 * 国コード
 	 */
 	String countryCode;

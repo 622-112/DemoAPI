@@ -11,12 +11,19 @@
 		resultType="com.example.demo.repository.entity.user.ResSelectUserCountryCodeEntity"
 	>
 		SELECT
-			DISTINCT(CountryCode)
+			DISTINCT Name, CountryCode
 		FROM
 			users
 		WHERE
-			Name = '${name}'
+			<foreach
+				item="name" index="index" collection="listName"
+				open="Name IN (" separator=", " close=")"
+			>
+				'${name}'
+			</foreach>
 		ORDER BY
+			Name
+		ASC,
 			CountryCode
 		ASC
 	</select>
