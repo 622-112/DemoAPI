@@ -1,0 +1,22 @@
+## データソース設定
+spring:
+  datasource:
+    ## worldDB
+    world:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/world?allowMultiQueries=true
+      username: root
+      password: hoge
+    ## userDB
+    user:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3305/user
+      username: root
+      password: hoge
+## ログレベルの指定
+logging:
+  level:
+    com:
+      example:
+        demo:
+          repository: DEBUG
