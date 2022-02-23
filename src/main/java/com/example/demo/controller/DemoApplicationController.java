@@ -19,7 +19,6 @@ public class DemoApplicationController {
 
 	@PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResDemoApplicationDto getDemoApplication(@RequestBody ReqDemoApplicationDto reqDemoApplicationDto) {
-		worldInfoService.getWorldInfo(reqDemoApplicationDto);
-		return null;
+		return worldInfoService.getWorldInfo(reqDemoApplicationDto);
 	}
 }

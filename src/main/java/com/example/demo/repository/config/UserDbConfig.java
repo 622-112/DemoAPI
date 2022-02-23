@@ -1,6 +1,7 @@
 package com.example.demo.repository.config;
 
 import javax.sql.DataSource;
+
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -9,7 +10,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Component;
@@ -19,21 +19,21 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * WorldDBÊé•Á∂öË®≠ÂÆö
+ * userDBê⁄ë±ê›íË
  */
 @Getter
 @Setter
 @Component
 @ConfigurationProperties(
-	prefix = "spring.datasource." + WorldDbConfig.DB_NAME
+	prefix = "spring.datasource." + UserDbConfig.DB_NAME
 )
 @MapperScan(
-	basePackages = WorldDbConfig.PACKAGE_BASE + WorldDbConfig.DB_NAME,
-	sqlSessionTemplateRef = WorldDbConfig.DB_NAME + "SqlSessionTemplate"
+	basePackages = UserDbConfig.PACKAGE_BASE + UserDbConfig.DB_NAME,
+	sqlSessionTemplateRef = UserDbConfig.DB_NAME + "SqlSessionTemplate"
 )
-public class WorldDbConfig {
-	// DBÊåáÂÆö
-	static final String DB_NAME = "world";
+public class UserDbConfig {
+	// DBéwíË
+	static final String DB_NAME = "user";
 	static final String PACKAGE_BASE = "com.example.demo.repository.mapper.";
 
 	private String driverClassName;
@@ -41,7 +41,6 @@ public class WorldDbConfig {
 	private String username;
 	private String password;
 
-	@Primary
 	@Bean(name = DB_NAME + "DataSource")
 	public DataSource createDataSource() {
 		return DataSourceBuilder
@@ -53,33 +52,25 @@ public class WorldDbConfig {
 				.build();
 	}
 
-	@Primary
 	@Bean(name = DB_NAME + "SqlSessionFactory")
 	public SqlSessionFactory sqlSessionFactory(
 		@Qualifier(DB_NAME + "DataSource") DataSource dataSource
 	) throws Exception {
 		SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
 		bean.setDataSource(dataSource);
-		bean.setMapperLocations(
-			new PathMatchingResourcePatternResolver()
-				.getResources(
-					"classpath:" + PACKAGE_BASE + DB_NAME + ".*xml"
-				)
-			);
+		bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:" + PACKAGE_BASE + DB_NAME + ".*xml"));
 		return bean.getObject();
 	}
 
-	@Primary
 	@Bean(name = DB_NAME + "SqlSessionTemplate")
-	public SqlSessionTemplate sqlSessionTemplate (
+	public SqlSessionTemplate sqlSessionTemplate(
 		@Qualifier(DB_NAME + "SqlSessionFactory") SqlSessionFactory sqlSessionFactory
 	) throws Exception {
 		return new SqlSessionTemplate(sqlSessionFactory);
 	}
 
-	@Primary
 	@Bean(name = DB_NAME + "TxManager")
-	public PlatformTransactionManager txManager (
+	public PlatformTransactionManager txManager(
 		@Qualifier(DB_NAME + "DataSource") DataSource dataSource
 	) {
 		return new DataSourceTransactionManager(dataSource);

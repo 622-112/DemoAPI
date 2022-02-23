@@ -2,52 +2,43 @@ CREATE DATABASE `user` DEFAULT CHARACTER SET utf8mb4;
 
 USE `user`;
 
-DROP TABLE IF EXISTS `user`;
+DROP TABLE IF EXISTS `users`;
 
 CREATE TABLE `users` (
-  `ID` int AUTO_INCREMENT,
-  `LastName` char(35) NOT NULL DEFAULT '',
-  `FirstName` char(35) NOT NULL DEFAULT '',
-  `CountryCode` char(35) NOT NULL DEFAULT '',
+  `ID` int NOT NULL AUTO_INCREMENT,
+  `Name` char(35) NOT NULL DEFAULT '',
+  `CountryCode` char(3) NOT NULL DEFAULT '',
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-set autocommit=0;
-INSERT INTO `users` (
-  `LastName`,
-  `FirstName`,
-  `CountryCode`
-) VALUES
-  ('Shinohara','Saaya', 'ARE'),
-  ('Hosaka', 'Masami', 'AUS'),
-  ('Hosaka', 'Masami', 'AUS'),
-  ('Yoshiwara', 'Hiroto', 'CAN'),
-  ('Kamino', 'Masanori', 'CHN'),
-  ('Hamamoto', 'Toshio', 'CHN'),
-  ('Ooshima', 'Haruka', 'GBR'),
-  ('Suga', 'Keishi', 'AUS'),
-  ('Imoto', 'Haruhisa', 'NCL'),
-  ('Oohashi', 'Hisakichi', 'BOL'),
-  ('Fukumoto', 'Akiko', 'CCK'),
-  ('Yano', 'Yasufumi', 'DNK'),
-  ('Hashimoto', 'Hisashi', 'GEO'),
-  ('Ariga', 'Haruhisa', 'HKG'),
-  ('Akagi', 'Teruo', 'AUT'),
-  ('Kasai', 'Haru', 'JPN'),
-  ('Kagawa', 'Mieko', 'DEU'),
-  ('Kodama', 'Chieko', 'MCO'),
-  ('Katsuta', 'Toshinobu', 'RUS'),
-  ('Soga', 'Hiroyuki', 'IRL'),
-  ('Kanazawa', 'Aki', 'ITA'),
-  ('Uesugi', 'Hiroshi', 'JPN'),
-  ('Takita', 'Kaho', 'FRA'),
-  ('Miyagi', 'Tadaharu', 'SWE'),
-  ('Hiratsuka', 'Kouji', 'IND'),
-  ('Yokomizo', 'Masayuki', 'TWN'),
-  ('Oyamada', 'Saya', 'SWZ'),
-  ('Kawai', 'Shigeo', 'PER'),
-  ('Abe', 'Sakura', 'SMR'),
-  ('Hayashida', 'Yasuko', 'CMR'),
-  ('Takemoto', 'Nagisa', 'USA')
-;
-commit;
+INSERT INTO `users` (`Name`, `CountryCode`) VALUES ('Saaya', 'ARE');
+INSERT INTO `users` (`Name`, `CountryCode`) VALUES ('Masami', 'AUS');
+INSERT INTO `users` (`Name`, `CountryCode`) VALUES ('Masami', 'AUS');
+INSERT INTO `users` (`Name`, `CountryCode`) VALUES ('Hiroto', 'CAN');
+INSERT INTO `users` (`Name`, `CountryCode`) VALUES ('Masanori', 'CHN');
+INSERT INTO `users` (`Name`, `CountryCode`) VALUES ('Toshio', 'CHN');
+INSERT INTO `users` (`Name`, `CountryCode`) VALUES ('Haruka', 'GBR');
+INSERT INTO `users` (`Name`, `CountryCode`) VALUES ('Keishi', 'AUS');
+INSERT INTO `users` (`Name`, `CountryCode`) VALUES ('Haruhisa', 'NCL');
+INSERT INTO `users` (`Name`, `CountryCode`) VALUES ('Hisakichi', 'BOL');
+INSERT INTO `users` (`Name`, `CountryCode`) VALUES ('Akiko', 'CCK');
+INSERT INTO `users` (`Name`, `CountryCode`) VALUES ('Yasufumi', 'DNK');
+INSERT INTO `users` (`Name`, `CountryCode`) VALUES ('Hisashi', 'GEO');
+INSERT INTO `users` (`Name`, `CountryCode`) VALUES ('Haruhisa', 'HKG');
+INSERT INTO `users` (`Name`, `CountryCode`) VALUES ('Teruo', 'AUT');
+INSERT INTO `users` (`Name`, `CountryCode`) VALUES ('Haru', 'JPN');
+INSERT INTO `users` (`Name`, `CountryCode`) VALUES ('Mieko', 'DEU');
+INSERT INTO `users` (`Name`, `CountryCode`) VALUES ('Chieko', 'MCO');
+INSERT INTO `users` (`Name`, `CountryCode`) VALUES ('Toshinobu', 'RUS');
+INSERT INTO `users` (`Name`, `CountryCode`) VALUES ('Hiroyuki', 'IRL');
+INSERT INTO `users` (`Name`, `CountryCode`) VALUES ('Aki', 'ITA');
+INSERT INTO `users` (`Name`, `CountryCode`) VALUES ('Hiroshi', 'JPN');
+INSERT INTO `users` (`Name`, `CountryCode`) VALUES ('Kaho', 'FRA');
+INSERT INTO `users` (`Name`, `CountryCode`) VALUES ('Tadaharu', 'SWE');
+INSERT INTO `users` (`Name`, `CountryCode`) VALUES ('Kouji', 'IND');
+INSERT INTO `users` (`Name`, `CountryCode`) VALUES ('Masayuki', 'TWN');
+INSERT INTO `users` (`Name`, `CountryCode`) VALUES ('Saya', 'SWZ');
+INSERT INTO `users` (`Name`, `CountryCode`) VALUES ('Shigeo', 'PER');
+INSERT INTO `users` (`Name`, `CountryCode`) VALUES ('Sakura', 'SMR');
+INSERT INTO `users` (`Name`, `CountryCode`) VALUES ('Yasuko', 'CMR');
+INSERT INTO `users` (`Name`, `CountryCode`) VALUES ('Nagisa', 'USA');
