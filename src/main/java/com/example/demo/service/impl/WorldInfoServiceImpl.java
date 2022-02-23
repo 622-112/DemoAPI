@@ -33,7 +33,7 @@ public class WorldInfoServiceImpl implements WorldInfoService {
 	@Autowired UserDbMapper userDbMapper;
 	@Autowired Gson gson;
 
-	private static Logger logger = LoggerFactory.getLogger(WorldInfoServiceImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(WorldInfoServiceImpl.class);
 
 	@Override
 	public ResDemoApplicationDto getWorldInfo(ReqDemoApplicationDto reqDemoApplicationDto) {
