@@ -26,13 +26,13 @@
 			city.Name AS cityName,
 			city.Population AS cityPopulation
 		FROM
-			world.country AS country
+			worldschema.country AS country
 		INNER JOIN
 			user_country
 		ON
 			user_country.counrtyCode = country.code
 		LEFT JOIN
-			world.city AS city
+			worldschema.city AS city
 		ON
 			city.CountryCode = country.Code
 		ORDER BY
