@@ -1,5 +1,13 @@
 **日本語での説明は[こちら▼](#demoapi%E3%81%A3%E3%81%A6%E4%BD%95)**
 
+# Changes ver.1 to ver.2
+- MySQL to PostgreSQL
+ * To use Window Functions
+- DemoAPI work with Docker
+ * API and ALL DBs with components by Docker
+- Responses to three per person
+- DB is called outside the loop
+
 # What is DemoAPI ?
 - Created by 622-122 (=R.F)
 - IF I would like to tell my basic creating API skills, I present this.
@@ -27,29 +35,33 @@ But when you busy, please read this page so that you could understand about this
   * If use variable in `for`, declare the variable above the `for`.
   * Thinking difference between new instance and declare null.
 - Consciding performance.
-  * use only `add` and `for`, using `LinkedList`.
+  * If it use only `add` and `for`, using `LinkedList`.
+  * Calling the DB is done outside the `for`.
 
 ## Try to run
 ### Requirements
-- Java over 11
 - Docker and Docker-Compose
 ### How to start
 1. **Prepare MySQL**<br>
 MySql called in this API, so MySql container by Docker-Compose or same needed.<br>
 If you have Docker-Compose, please use file by directory `DockerCompose` in my project.<br>
-On the directory of `./DockerCompose/mysql_user`and `./DockerCompose/mysql_world`, please enter the following command on the command line.
+On the directory of `./DockerCompose`, please enter the following command on the command line.
 
 ```bash
 Docker-Compose build
 Docker-Compose up -d
 ```
 
-2. **Run the file of jar**<br>
-I builded DemoAPI and stored DemoAPI.jar in `./build/libs`.
-When enter this command there on the command line, that boot up.
+2. **Run the API**<br>
+Once the container is created, you can run the API.
+Enter the following command.
 
 ```bash
-java -jar DemoAPI.jar
+docker exec -it demoapi bash -p
+```
+
+```bash
+./gradlew bootRun
 ```
 
 3. **Call DemoAPI**<br>
@@ -59,6 +71,13 @@ curl -X POST      -H 'Content-Type:application/json'      -d '{
          "name": ["Masami", "Haruhisa", "Saaya"]
      }' http://localhost:8080/
 ```
+
+4. **API stop**<br>
+If you would like to stop the API, you can use `Ctrl + C` to do so.
+Containers can be removed with the following command.
+
+```docker-compose down --rmi all --volumes --remove-orphans```
+
 # End
 Thank you for your looking.
 
@@ -66,6 +85,14 @@ Thank you for your looking.
 <br>
 <hr>
 <br>
+
+# ver.1から2への変更点
+- MySQLをPostgreSQLに
+ * Window関数を使うため変更
+- DemoAPIをDockerで動かす
+ * APIとDBをすべてDockerのコンポーネントで動かすよう変更しました
+- 1人あたり3件までのレスポンスを返却するよう修正
+- DBをループ外で呼び出すよう変更しました
 
 # DemoAPIって何？
 - このAPIは622-122 （R.F）が作成したAPIです。
@@ -97,16 +124,16 @@ https://docs.google.com/spreadsheets/d/1x3sa6rUVtkWRfz-9Tpa0WrfrSEEjT1liQ9LjLNC1
   * インスタンスの作成とnullでの宣言について、意識して使い分けています。
 - その他性能の考慮
   * `add`や`for`でしか利用しない場合、`ArrayList`ではなく`LinkedList`を利用しています。
+  * DBを`for`文の外で呼び出すように設計しています。
 
 ## APIを動かす
 ### 動作環境
-- Java11以上
 - Docker & Docker-Compose
 ### 実行方法
-1. **MySQLの準備**<br>
-このAPIではMySQLの呼び出しをしており、Docker-Composeでコンテナ化されたMySQLを呼ぶ想定となっています。<br>
+1. **コンテナの準備**<br>
+このAPIはDockerコンテナで運用されます。<br>
 もしご自身のPCにDocker-Composeが入っていればこのプロジェクト内のDockerCompose用定義ファイルで簡単にコンテナを作成することが出来ます。<br>
-`./DockerCompose/mysql_user`と`./DockerCompose/mysql_world`で以下のコマンドを叩いてください。
+`./DockerCompose`配下で以下のコマンドを叩いてください。
 
 ```bash
 Docker-Compose build
@@ -114,11 +141,14 @@ Docker-Compose up -d
 ```
 
 2. **APIの実行**<br>
-ビルドしたAPIを`./build/libs`に格納しています。<br>
-その場所で以下のコマンドを叩くことで実行開始します。
+コンテナが作成出来たら、以下のコマンドを叩くことでAPIを実行することが出来ます。
 
 ```bash
-java -jar DemoAPI.jar
+docker exec -it demoapi bash -p
+```
+
+```bash
+./gradlew bootRun
 ```
 
 3. **APIの呼び出し**<br>
@@ -129,5 +159,12 @@ curl -X POST      -H 'Content-Type:application/json'      -d '{
          "name": ["Masami", "Haruhisa", "Saaya"]
      }' http://localhost:8080/
 ```
+
+4. **APIの停止**<br>
+APIの停止をしたいときは`Ctri + C`で停止することが出来ます。
+コンテナは以下のコマンドで削除することが可能です。
+
+```docker-compose down --rmi all --volumes --remove-orphans```
+
 # おわり
 以上です。ご覧いただきありがとうございました。

@@ -13,12 +13,12 @@ import org.springframework.stereotype.Service;
 import com.example.demo.controller.dto.ReqDemoApplicationDto;
 import com.example.demo.controller.dto.ResDemoApplicationDto;
 import com.example.demo.controller.dto.WorldInfo;
-import com.example.demo.repository.entity.user.ReqSelectUserCountryCodeEntity;
-import com.example.demo.repository.entity.user.ResSelectUserCountryCodeEntity;
+import com.example.demo.repository.entity.users.ReqSelectUserCountryCodeEntity;
+import com.example.demo.repository.entity.users.ResSelectUserCountryCodeEntity;
 import com.example.demo.repository.entity.world.ReqSelectPopulatedCityEntity;
 import com.example.demo.repository.entity.world.ResSelectPopulatedCityEntity;
 import com.example.demo.repository.entity.world.UserCountry;
-import com.example.demo.repository.mapper.user.UserDbMapper;
+import com.example.demo.repository.mapper.users.UsersDbMapper;
 import com.example.demo.repository.mapper.world.WorldDbMapper;
 import com.example.demo.service.WorldInfoService;
 import com.google.gson.Gson;
@@ -30,7 +30,7 @@ import com.google.gson.Gson;
 public class WorldInfoServiceImpl implements WorldInfoService {
 
 	@Autowired WorldDbMapper worldDbMapper;
-	@Autowired UserDbMapper userDbMapper;
+	@Autowired UsersDbMapper usersDbMapper;
 	@Autowired Gson gson;
 
 	private static final Logger logger = LoggerFactory.getLogger(WorldInfoServiceImpl.class);
@@ -48,7 +48,7 @@ public class WorldInfoServiceImpl implements WorldInfoService {
 
 			// リクエストのnameから国コードを取得
 			reqSelectUserCountryCodeEntity.setListName(reqDemoApplicationDto.getName());
-			listResSelectUserCountryCodeEntity = userDbMapper.selectUserCountryCode(reqSelectUserCountryCodeEntity);
+			listResSelectUserCountryCodeEntity = usersDbMapper.selectUserCountryCode(reqSelectUserCountryCodeEntity);
 			logger.debug("resSelectUserCountryCodeEntity: " + gson.toJson(listResSelectUserCountryCodeEntity));
 
 			// 国コードリストが取得できた場合、処理を実行

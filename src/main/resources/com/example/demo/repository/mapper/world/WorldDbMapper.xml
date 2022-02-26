@@ -20,25 +20,41 @@
 		>
 			INSERT INTO user_country VALUES ('${item.name}', '${item.countryCode}');
 		</foreach>
-		SELECT DISTINCT
-			user_country.name AS name,
-			country.Name AS countryName,
-			city.Name AS cityName,
-			city.Population AS cityPopulation
+		SELECT
+			name,
+			countryName,
+			cityName,
+			cityPopulation
 		FROM
-			world.country AS country
-		INNER JOIN
-			user_country
-		ON
-			user_country.counrtyCode = country.code
-		LEFT JOIN
-			world.city AS city
-		ON
-			city.CountryCode = country.Code
+			(	
+				SELECT
+					user_country.name AS name,
+					country.Name AS countryName,
+					city.Name AS cityName,
+					city.Population AS cityPopulation,
+					ROW_NUMBER() OVER (
+						PARTITION BY
+							user_country.name
+						ORDER BY
+							city.Population DESC,
+							country.Name ASC
+					) AS rank
+				FROM
+					country AS country
+				INNER JOIN
+					user_country
+				ON
+					user_country.counrtyCode = country.code
+				LEFT JOIN
+					city AS city
+				ON
+					city.CountryCode = country.Code
+			) AS pop_rank
+		WHERE
+			rank <![CDATA[ <= ]]> 3
 		ORDER BY
-			country.Name ASC,
-			city.Population DESC;
+			rank ASC;
 
-		DROP TEMPORARY TABLE user_country;
+		DROP TABLE user_country;
 	</select>
 </mapper>
