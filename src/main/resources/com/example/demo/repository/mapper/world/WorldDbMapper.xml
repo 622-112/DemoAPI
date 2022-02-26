@@ -34,9 +34,10 @@
 					city.Population AS cityPopulation,
 					ROW_NUMBER() OVER (
 						PARTITION BY
-							country.Name
+							user_country.name
 						ORDER BY
-							city.Population DESC
+							city.Population DESC,
+							country.Name ASC
 					) AS rank
 				FROM
 					country AS country
