@@ -19,7 +19,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * userDBÚ‘±İ’è
+ * usersDBæ¥ç¶šè¨­å®š
  */
 @Getter
 @Setter
@@ -32,8 +32,8 @@ import lombok.Setter;
 	sqlSessionTemplateRef = UserDbConfig.DB_NAME + "SqlSessionTemplate"
 )
 public class UserDbConfig {
-	// DBw’è
-	static final String DB_NAME = "user";
+	// DBæŒ‡å®š
+	static final String DB_NAME = "users";
 	static final String PACKAGE_BASE = "com.example.demo.repository.mapper.";
 
 	private String driverClassName;

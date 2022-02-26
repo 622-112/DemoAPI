@@ -10,27 +10,51 @@
 		parameterType="com.example.demo.repository.entity.world.ReqSelectPopulatedCityEntity"
 		resultType="com.example.demo.repository.entity.world.ResSelectPopulatedCityEntity"
 	>
+		CREATE TEMPORARY TABLE user_country (
+			name char(25),
+			counrtyCode char(3)
+		);
+		<foreach
+			item="item" index="index" collection="listUserCountry"
+			open="" separator=" " close=""
+		>
+			INSERT INTO user_country VALUES ('${item.name}', '${item.countryCode}');
+		</foreach>
 		SELECT
-			country.Name AS countryName,
-			city.Name AS cityName,
-			city.Population AS cityPopulation
+			name,
+			countryName,
+			cityName,
+			cityPopulation
 		FROM
-			world.country AS country
-		LEFT JOIN
-			world.city AS city
-		ON
-			country.Code = city.CountryCode
+			(	
+				SELECT
+					user_country.name AS name,
+					country.Name AS countryName,
+					city.Name AS cityName,
+					city.Population AS cityPopulation,
+					ROW_NUMBER() OVER (
+						PARTITION BY
+							user_country.name
+						ORDER BY
+							city.Population DESC,
+							country.Name ASC
+					) AS rank
+				FROM
+					country AS country
+				INNER JOIN
+					user_country
+				ON
+					user_country.counrtyCode = country.code
+				LEFT JOIN
+					city AS city
+				ON
+					city.CountryCode = country.Code
+			) AS pop_rank
 		WHERE
-			<foreach
-				item="name" index="index" collection="listCountryCode"
-				open="country.Code IN (" separator=", " close=")"
-			>
-				'${name}'
-			</foreach>
+			rank <![CDATA[ <= ]]> 3
 		ORDER BY
-			country.Name ASC,
-			city.Population DESC
-		LIMIT
-			3
+			rank ASC;
+
+		DROP TABLE user_country;
 	</select>
 </mapper>

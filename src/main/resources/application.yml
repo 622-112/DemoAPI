@@ -3,16 +3,16 @@ spring:
   datasource:
     ## worldDB
     world:
-      driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://127.0.0.1:3306/world
-      username: root
-      password: hoge
-    ## userDB
-    user:
-      driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://127.0.0.1:3305/user
-      username: root
-      password: hoge
+      driver-class-name: org.postgresql.Driver
+      url: jdbc:postgresql://worlddb:5432/worlddb?allowMultiQueries=true
+      username: api
+      password: password
+    ## usersDB
+    users:
+      driver-class-name: org.postgresql.Driver
+      url: jdbc:postgresql://userdb:5432/usersdb
+      username: api
+      password: password
 ## ログレベルの指定
 logging:
   level:
