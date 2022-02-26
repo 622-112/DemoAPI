@@ -13,7 +13,7 @@
 		SELECT
 			DISTINCT Name, CountryCode
 		FROM
-			userschema.users
+			users
 		WHERE
 			<foreach
 				item="name" index="index" collection="listName"

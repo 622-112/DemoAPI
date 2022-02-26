@@ -1,16 +1,11 @@
 -- ユーザーの作成
 CREATE USER api;
 
--- DBの作成
-CREATE DATABASE users;
+-- ユーザーに権限を付与
+GRANT ALL PRIVILEGES ON DATABASE usersdb TO api;
 
--- ユーザーにDBの権限をまとめて付与
-GRANT ALL PRIVILEGES ON DATABASE users TO api;
-
--- DBを切り替え
-\c users
-
-DROP TABLE IF EXISTS users;
+-- ユーザの切り替え
+\c usersdb api;
 
 -- テーブルを作成
 CREATE TABLE users (
@@ -52,3 +47,6 @@ INSERT INTO users (Name, CountryCode) VALUES ('Shigeo', 'PER');
 INSERT INTO users (Name, CountryCode) VALUES ('Sakura', 'SMR');
 INSERT INTO users (Name, CountryCode) VALUES ('Yasuko', 'CMR');
 INSERT INTO users (Name, CountryCode) VALUES ('Nagisa', 'USA');
+
+-- ユーザにパスワードを設定する
+ALTER USER api WITH PASSWORD 'password';

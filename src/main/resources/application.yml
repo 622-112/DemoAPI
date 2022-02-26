@@ -5,14 +5,14 @@ spring:
     world:
       driver-class-name: org.postgresql.Driver
       url: jdbc:postgresql://worlddb:5432/worlddb?allowMultiQueries=true
-      username: hoge
-      password: hoge
+      username: api
+      password: password
     ## usersDB
     users:
       driver-class-name: org.postgresql.Driver
       url: jdbc:postgresql://userdb:5432/usersdb
-      username: hoge
-      password: hoge
+      username: api
+      password: password
 ## ログレベルの指定
 logging:
   level:

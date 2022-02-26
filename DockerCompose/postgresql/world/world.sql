@@ -1,14 +1,11 @@
 -- ユーザーの作成
 CREATE USER api;
 
--- DBの作成
-CREATE DATABASE world;
+-- ユーザーに権限を付与
+GRANT ALL PRIVILEGES ON DATABASE worlddb TO api;
 
--- ユーザーにDBの権限をまとめて付与
-GRANT ALL PRIVILEGES ON DATABASE world TO api;
-
--- DBを切り替え
-\c world
+-- ユーザの切り替え
+\c worlddb api;
 
 -- テーブルを作成
 -- テーブル作成
@@ -4373,3 +4370,6 @@ INSERT INTO city VALUES (4076,'Hebron','PSE','Hebron',119401);
 INSERT INTO city VALUES (4077,'Jabaliya','PSE','North Gaza',113901);
 INSERT INTO city VALUES (4078,'Nablus','PSE','Nablus',100231);
 INSERT INTO city VALUES (4079,'Rafah','PSE','Rafah',92020);
+
+-- ユーザにパスワードを設定する
+ALTER USER api WITH PASSWORD 'password';
