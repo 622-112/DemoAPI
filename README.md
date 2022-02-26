@@ -1,4 +1,4 @@
-**日本語での説明は[こちら▼](https://github.com/622-112/DemoAPI/new/main?readme=1#demoapi%E3%81%A3%E3%81%A6%E4%BD%95)**
+**日本語での説明は[こちら▼](#demoapi%E3%81%A3%E3%81%A6%E4%BD%95)**
 
 # What is DemoAPI ?
 - Created by 622-122 (=R.F)
