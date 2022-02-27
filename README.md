@@ -14,7 +14,7 @@
 - And, my written article's demo.
   * Please check my written: https://qiita.com/622-122
 - Design
-  * please look the spreadsheet: https://docs.google.com/spreadsheets/d/1x3sa6rUVtkWRfz-9Tpa0WrfrSEEjT1liQ9LjLNC1uL8/edit#gid=705193169
+  * please look the spreadsheet: https://docs.google.com/spreadsheets/d/1x3sa6rUVtkWRfz-9Tpa0WrfrSEEjT1liQ9LjLNC1uL8/edit#gid=883502566
 
 # Please check this API
 If you have a few time, I hope you would run this API.<br>
@@ -102,7 +102,7 @@ Thank you for your looking.
 https://qiita.com/622-122
 - 設計
   * インターフェースなどはスプレッドシートにまとめておりますので、此方をご覧ください。<br>
-https://docs.google.com/spreadsheets/d/1x3sa6rUVtkWRfz-9Tpa0WrfrSEEjT1liQ9LjLNC1uL8/edit#gid=705193169
+https://docs.google.com/spreadsheets/d/1x3sa6rUVtkWRfz-9Tpa0WrfrSEEjT1liQ9LjLNC1uL8/edit#gid=883502566
 
 # APIについて
 もしお時間があれば実行してみて頂けると大変うれしく思います。<br>
